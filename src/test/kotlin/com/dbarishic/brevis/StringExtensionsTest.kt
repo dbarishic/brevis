@@ -28,4 +28,22 @@ class StringExtensionsTest {
         val result = "ZZZ".generateNextPermutation()
         assert(result == "0000")
     }
+
+    @Test
+    fun `generateNextPermutation generates all unique permutations for 3char string`() {
+        val results = ArrayList<String>()
+        var s = "000"
+        var len = s.length
+        results.add(s)
+
+        while (len < 4) {
+            s = s.generateNextPermutation()
+            results.add(s)
+            len = s.length
+        }
+
+        // subtract one because on last iteration a 4char string is added
+        assert(results.distinct().count() -1 == 238328)
+        assert(results.size - 1 == 238328)
+    }
 }
